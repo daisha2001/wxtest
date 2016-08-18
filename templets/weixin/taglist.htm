@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" /><meta name="format-detection" content="telephone=no" />
+<title>{dede:field.typename/}微信</title>
+<link href="/templets/weixin/css/yidong_chengxuyuan.css" rel="stylesheet" type="text/css" />
+
+</head> 
+<body>
+<!--header-star-->
+<div class="yd_header tac">
+  <font class="f20 col1 bol">全部分类</font>
+  <div class="clear"></div>
+</div>
+<!--header-end-->
+<div class="clear"></div>
+<!--mid star-->
+<div class="content2">
+  <ul class="noh f18 bol red lh36">
+ {dede:sql sql="select * from (select count(b.aid) as dd,a.id,a.keyname,a.catid from tb_customtags a,dede_addonweixin10 b where a.statu=1 and FIND_IN_SET(a.id, b.tag)>0 and a.catid=~typeid~ group by a.id desc)temp where dd >1 order by dd desc"}
+    <li class="floatleft pr2"><a href="/tags.php?typeid=[field:catid/]&tag=[field:id/]">[field:keyname /]</a><span class="col2 nor f14">（[field:id function='getcountnews(@me)' /]篇）</span></li>
+{/dede:sql}
+  </ul>
+    <div class="clear"></div>
+    <div class="fixed">
+    <a href="{dede:field.weixinurl/}">{dede:field.typename/}微信</a><a href="{dede:field.typedir/}">全部文章</a><a href="/tags.php?type=hot&typeid={dede:field.typeid/}">热门文章</a>
+  </div>
+  <div class="clear"></div>
+ {dede:sql sql="select distinct(FROM_UNIXTIME(`senddate`,'%Y年%m月')) as dd,typeid from dede_addonweixin10 where typeid=~typeid~ group by dd desc"}
+  <p class="red bol space3 f18">[field:dd /]</p>
+  [field:array function='getarclistweixin(@me)'/]
+  <div class="clear"></div>
+  {/dede:sql}
+  <div class="fixed">
+    <a href="{dede:field.weixinurl/}">{dede:field.typename/}微信</a><a href="{dede:field.typedir/}">全部文章</a><a href="/tags.php?type=hot&typeid={dede:field.typeid/}">热门文章</a>
+  </div>
+  <div class="clear"></div>
+{dede:field.footcode/}
+</body> 
+</html> 

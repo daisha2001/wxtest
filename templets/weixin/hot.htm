@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" /><meta name="format-detection" content="telephone=no" />
+<title>{dede:field.typename/}微信</title>
+<link href="/templets/weixin/css/yidong_chengxuyuan.css" rel="stylesheet" type="text/css" />
+
+</head> 
+<body>
+<!--header-star-->
+<div class="yd_header tac">
+  <font class="f20 col1 bol">热门文章</font>
+  <div class="clear"></div>
+</div>
+<!--header-end-->
+<div class="clear"></div>
+<!--mid star-->
+<div class="content2">
+
+    <div class="fixed">
+    <a href="{dede:field.weixinurl/}">{dede:field.typename/}微信</a><a href="{dede:field.typedir/}">全部文章</a><a href="/tags.php?typeid={dede:field.typeid/}">查看分类</a>
+  </div>
+  <div class="clear"></div>
+ {dede:sql sql="select distinct(FROM_UNIXTIME(`senddate`,'%Y年%m月')) as dd,typeid from dede_addonweixin10 where 1 and FIND_IN_SET('h',flag)>0 and typeid=~typeid~  group by dd desc"}
+  <p class="red bol space3 f18">[field:dd /]</p>
+  [field:array function='getarclisthotweixin(@me)'/]
+  <div class="clear"></div>
+  {/dede:sql}
+  <div class="fixed">
+  
+    <a href="{dede:field.weixinurl/}">{dede:field.typename/}微信</a>
+	
+	<a href="{dede:field.typedir/}">全部文章</a><a href="/tags.php?typeid={dede:field.typeid/}">查看分类</a>
+  </div>
+  <div class="clear"></div>
+  {dede:field.footcode/}
+</body> 
+</html> 

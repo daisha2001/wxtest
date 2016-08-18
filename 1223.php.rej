@@ -1,0 +1,9 @@
+diff a/1223.php b/1223.php	(rejected hunks)
+@@ -0,6 +0,7 @@
+ 	public function valid()
+     {
+         $echoStr = $_GET["echostr"];
++
+         //valid signature , option
+         if($this->checkSignature()){
+         	echo $echoStr;
